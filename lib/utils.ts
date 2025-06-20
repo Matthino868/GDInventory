@@ -19,6 +19,5 @@ export function daysUntilReorder(
 ): number {
     const daysStockWillLast = stockLeft / itemsSoldPerDay;
     const daysLeftToOrder = daysStockWillLast - deliveryTimeInDays;
-    console.log("daysLeftToOrder:", daysLeftToOrder, "for stockLeft:", stockLeft, "itemsSoldPerDay:", itemsSoldPerDay, "deliveryTimeInDays:", deliveryTimeInDays);
     return Math.max(0, Math.floor(daysLeftToOrder)); // never return negative, 0 means order immediately
 }
