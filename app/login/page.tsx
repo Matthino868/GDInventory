@@ -8,10 +8,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 
 export default async function LoginPage() {
-    const session = await getServerSession(authOptions);
-    if (session) {
-        redirect("/");
-    }
+
     return (
         <div className="flex items-center justify-center min-h-screen">
             <div className="max-w-md w-full p-4">
