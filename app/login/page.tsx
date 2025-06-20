@@ -3,8 +3,15 @@
 import Image from "next/image";
 import { Suspense } from "react";
 import LoginForm from "./LoginForm";
+import { redirect } from "next/navigation";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
 
-export default function LoginPage() {
+export default async function LoginPage() {
+    const session = await getServerSession(authOptions);
+    if (session) {
+        redirect("/");
+    }
     return (
         <div className="flex items-center justify-center min-h-screen">
             <div className="max-w-md w-full p-4">
