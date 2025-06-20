@@ -4,9 +4,10 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import SignOutButton from "./SignOutButton";
+import { Session } from "next-auth";
 
 interface HeaderProps {
-  session: any;
+  session: Session;
 }
 
 export default function Header({ session }: HeaderProps) {
