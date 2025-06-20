@@ -4,20 +4,18 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import SignOutButton from "./SignOutButton";
-import { Session } from "next-auth";
+import { useSession } from "next-auth/react"; // Adjust the import based on your setup
 
-interface HeaderProps {
-  session: Session;
-}
 
-export default function Header({ session }: HeaderProps) {
+
+export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const navItems = [
     { href: "/dashboard/list", label: "Bestellijst" },
     { href: "/dashboard/calendar", label: "Kalender" },
   ];
-
+  const { data: session} = useSession();
   if (!session) return null;
 
   return (
@@ -55,9 +53,8 @@ export default function Header({ session }: HeaderProps) {
       </button>
 
       <nav
-        className={`${
-          menuOpen ? "block" : "hidden"
-        } absolute top-full left-0 right-0 bg-gray-100 border-t border-gray-300 shadow-md lg:shadow-none lg:border-none lg:bg-transparent lg:flex lg:items-center lg:static lg:space-x-8 lg:block`}
+        className={`${menuOpen ? "block" : "hidden"
+          } absolute top-full left-0 right-0 bg-gray-100 border-t border-gray-300 shadow-md lg:shadow-none lg:border-none lg:bg-transparent lg:flex lg:items-center lg:static lg:space-x-8 lg:block`}
       >
         <div className="flex flex-col lg:flex-row lg:items-center">
           {navItems.map(({ href, label }) => (
